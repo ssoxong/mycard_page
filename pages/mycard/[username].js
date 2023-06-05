@@ -80,7 +80,7 @@ const UserPage = ({  user_profile_info, repos, orgs }) => {
       } {
       } < section>
         <div className="container mx-auto flex flex-col">
-          <div onClick={onClick} className="card rounded-md w-96 h-60 bg-black">
+          <div onClick={onClick} className="card rounded-md w-96 h-60 bg-my-color">
               <div className="front">
                   <div className="profile">
                       <img className="profileimg" src={user_profile_info.avatar_url} alt="profileimg"></img>
@@ -147,13 +147,13 @@ const UserPage = ({  user_profile_info, repos, orgs }) => {
               <div className="flex flex-col items-center justify-center h-full">
                   <div className="flex-shrink-0 mt-0 mb-0 p-0">
                     <img
-                      src={`https://github-readme-stats.vercel.app/api?username=${user_profile_info.login}&show_icons=true&theme=dark`}
+                      src={`https://github-readme-stats.vercel.app/api?username=${user_profile_info.login}&show_icons=true&theme=tokyonight`}
                       className="h-40"
                     />
                   </div>
-                  <div className="flex mt-[-3px] mb-0 p-0">
+                  <div className="flex-shrink-0">
                     <img
-                      src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${user_profile_info.login}&hide_progress=true&theme=dark`}
+                      src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${user_profile_info.login}&hide_progress=true&theme=tokyonight`}
                       className="h-20"
                     />
                   </div>

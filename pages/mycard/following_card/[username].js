@@ -1,29 +1,25 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import fetch from 'isomorphic-unfetch';
+import '../../../styles/global.css';
 
-// const fetchGitHubFollowUser = async (accessToken, username) => {
-//   try {
-//     const response = await fetch(`https://api.github.com/users/${username}`, {
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     });
+const fetchGitHubFollowUser = async (accessToken, username) => {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-//     if (response.ok) {
-//       const data = await response.json();
-//       return data;
-//     } else {
-//       throw new Error(`Failed to fetch GitHub user data: ${response.status}`);
-//     }
-//   } catch (error) {
-//     console.error("Failed to fetch GitHub user data:", error);
-//   }
-// };
-
-export async function getStaticPaths() {
-    return {paths: [], fallback: 'blocking'};
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error(`Failed to fetch GitHub user data: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Failed to fetch GitHub user data:", error);
+  }
 };
-
-
 
 export default function Following_Card({
   followingUsers,
@@ -31,27 +27,31 @@ export default function Following_Card({
   followingUserRepos,
 }) {
   const [followingList, setFollowingList] = useState([]);
-
+  console.log("function in following Users",followingUsers )
+  
   useEffect(() => {
     const fetchData = async () => {
         const updatedFollowingList = await Promise.all(
           followingUsers.map(async (followingUser) => {
             const userData = await fetchGitHubFollowUser(
-              session.accessToken,
+              //session.accessToken,
               followingUser.login
             );
+            console.log("팔로윙유저",followingUser);
             return {
               ...followingUser,
               ...userData,
             };
           })
         );
-
         setFollowingList(updatedFollowingList);
-      };
+        
+    
+    };
 
     fetchData();
   }, []);
+
 
   function onClick(event) {
     const element = event.currentTarget;
@@ -71,8 +71,7 @@ export default function Following_Card({
             <div
               key={followingUser.id}
               onClick={onClick}
-              className="card rounded-md w-96 h-60 bg-black"
-            >
+              className="card rounded-md w-96 h-60 mb-12 bg-my-color"            >
               {/* 카드 내용 */}
               <div className="front">
                 {/* 사용자 정보 */}
@@ -164,17 +163,17 @@ export default function Following_Card({
                 {/* ... */}
               </div>
               <div className="back">
-                <div className="flex flex-row items-center justify-center h-full">
+                <div className="flex flex-col items-center justify-center h-full">
                   <div className="flex-shrink-0">
                     <img
                       src={`https://github-readme-stats.vercel.app/api?username=${followingUser.login}&show_icons=true&theme=tokyonight`}
-                      className="h-60"
+                      className="h-40"
                     />
                   </div>
                   <div className="flex-shrink-0">
                     <img
-                      src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${followingUser.login}&layout=compact&theme=tokyonight`}
-                      className="h-60"
+                      src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${followingUser.login}&hide_progress=true&theme=tokyonight`}
+                      className="h-20"
                     />
                   </div>
                 </div>
@@ -185,7 +184,7 @@ export default function Following_Card({
           ))}
         </div>
       </div>
-      <style jsx="jsx">
+      {/* <style jsx="jsx">
         {`
           .content {
             display: flex;
@@ -457,31 +456,24 @@ export default function Following_Card({
         `}
       </style>
       <style jsx>{`
-        @media (max-width: 768px) {
-          /* 너비가 768px 이하일 때 */
-          .content :global(.card) {
-            @apply w-1/2; /* 한 줄에 2개의 카드가 나오도록 설정 */
-          }
-        }
-
-        @media (max-width: 480px) {
-          /* 너비가 480px 이하일 때 */
-          .content :global(.card) {
-            @apply w-full; /* 한 줄에 1개의 카드가 나오도록 설정 */
-          }
-        }
-      `}</style>
+        
+      `}</style> */}
     </>
   );
 }
+export async function getStaticPaths() {
+    return {paths: [], fallback: 'blocking'};
+};
 
 export async function getStaticProps({params}) {
-    const user = params;
+  const user = params.username;
+  console.log("유저!",user)
     const response5 = await fetch(
       `https://api.github.com/users/${user}/following`
     );
 
     const following = await response5.json();
+    console.log("팔로잉!!",following);
 
     // Fetch following users
 
@@ -505,17 +497,17 @@ export async function getStaticProps({params}) {
       const response1 = await fetch(
         `https://api.github.com/users/${followingUser.login}/orgs`
       );
-
+      
       const response2 = await fetch(
         `https://api.github.com/users/${followingUser.login}/repos`
       );
 
       const followingUserOrgInfo = await response1.json();
+      console.log("followinginfo!!!", followingUserOrgInfo);
       const followingUserReposInfo = await response2.json();
       followingUserOrgs.push(followingUserOrgInfo);
       followingUserRepos.push(followingUserReposInfo);
 
-      console.log(followingUserOrgs);
     }
 
     return {
@@ -525,5 +517,4 @@ export async function getStaticProps({params}) {
         followingUserRepos,
       },
     };
-  
 }
