@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "pages/**/*",
+        "src": "",
         "use": "@vercel/static-build",
         "config": {
           "buildCommand": "npm run build"
