@@ -78,8 +78,8 @@ const UserPage = ({  user_profile_info, repos, orgs }) => {
   return (
       <> {
       } {
-      } < section className = "text-gray-600 body-font mb-24" >
-        <div className="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+      } < section>
+        <div className="container mx-auto flex flex-col">
           <div onClick={onClick} className="card rounded-md w-96 h-60 bg-black">
               <div className="front">
                   <div className="profile">
