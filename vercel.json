@@ -5,7 +5,7 @@
         "src": "pages/**/*",
         "use": "@vercel/static-build",
         "config": {
-          "buildCommand": "npm run dev"
+          "buildCommand": "npm run build"
         }
       }
     ],
