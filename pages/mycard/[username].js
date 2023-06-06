@@ -146,7 +146,7 @@ const UserPage = ({  user_profile_info, repos, orgs }) => {
                     src={`https://github-readme-stats.vercel.app/api?username=${user_profile_info.login}&show_icons=true&theme=tokyonight`}
                     className="h-40"
 
-/>
+                    />
 
                   </div>
                   <div className="flex-shrink-0" >
