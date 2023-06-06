@@ -3,8 +3,6 @@
 @import 'tailwindcss/utilities';
 
 .card {
-    border-style: inset;
-    border-color: #1a1b27;
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -14,8 +12,6 @@
 
 .back,
 .front {
-    border-style: inset;
-    border-color: #1a1b27;
     border-radius: 7px;
     color: white;
     position: absolute;
@@ -61,6 +57,10 @@
     font-weight: Regular;
     display: inline-block;
     white-space: nowrap;
+}
+
+.h-40{
+
 }
 
 .followers {
