@@ -147,7 +147,6 @@ const UserPage = ({  user_profile_info, repos, orgs }) => {
                     className="h-40"
 
                     />
-
                   </div>
                   <div className="flex-shrink-0" >
                     <img
