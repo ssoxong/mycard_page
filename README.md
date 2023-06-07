@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## mycard_page
+Git_Business_Card_Web 코드에서 부분 발췌하여 vercel 배포
 
-## Getting Started
+### 목적
+Gi_Business_Card_App에서 Web이 만든 명함을 사용할 수 있도록 별도의 페이지 제작
 
-First, run the development server:
+### 기능
+#### My Card
+- 기본
+https://mycard-page.vercel.app/mycard/${username}  
+![image](https://github.com/ssoxong/mycard_page/assets/112956015/52cce0a8-0bf3-4673-8add-f13085f94a29)  
+username 기반으로 깃허브 API를 불러와 명함 형태로 구현
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- 명함 클릭시
+![image](https://github.com/ssoxong/mycard_page/assets/112956015/696e763b-ce22-4943-959b-f46bd257d0db)
+사용자가 깃허브에서 얼마나 활동했는지 나타내고, 주요 사용 언어를 출력함
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##### Following Card
+https://mycard-page.vercel.app/mycard/following_card/${username}  
+mycard와 동일한 형태로, 사용자가 팔로우하고있는 유저들의 명함을 보여준다.
